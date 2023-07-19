@@ -4,8 +4,8 @@ from time import sleep
 
 class BasePage:
     headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0'}
-    max_retries = 3
-    retry_delay = 3  # Delay in seconds between retries
+    max_retries = 5
+    retry_delay = 5  # Delay in seconds between retries
 
     def __init__(self, api_client):
         self.api_client = api_client
