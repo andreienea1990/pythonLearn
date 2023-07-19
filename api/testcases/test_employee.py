@@ -1,5 +1,7 @@
 import pytest
 from api.pages.employee_page import EmployeePage
+from api.utils.status_codes import StatusCode
+from api.utils.status_messages import ResponseMessages
 
 
 @pytest.fixture
@@ -12,8 +14,8 @@ def test_get_employee(employee_page):
     response = employee_page.get_employee(employee_id)
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == 200
-    assert response_json["status"] == "success"
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
     assert isinstance(response_json["data"], dict)
     assert response_json["data"]["id"] == employee_id
     assert response_json["data"]["employee_name"] == "Tiger Nixon"
@@ -24,8 +26,8 @@ def test_get_all_employees(employee_page):
     response = employee_page.get_all_employees()
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == 200
-    assert response_json["status"] == "success"
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
 
 
 def test_delete_employee(employee_page):
@@ -33,7 +35,6 @@ def test_delete_employee(employee_page):
     response = employee_page.delete_employee(employee_id)
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == 200
-    # check status code for repsonse
-    assert response_json["status"] == "success"
-    assert response_json["message"] == "Successfully! Record has been deleted"
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
+    assert response_json["message"] == ResponseMessages.RECORD_DELETED.value
