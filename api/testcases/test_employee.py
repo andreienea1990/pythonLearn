@@ -38,3 +38,13 @@ def test_delete_employee(employee_page):
     assert status_code == StatusCode.STATUS_OK.value
     assert response_json["status"] == ResponseMessages.SUCCESS.value
     assert response_json["message"] == ResponseMessages.RECORD_DELETED.value
+
+def test_update_employee(employee_page):
+    employee_id = 21
+    response = employee_page.update_employee(employee_id)
+    status_code = response.status_code
+    response_json = response.json()
+    assert status_code == 200
+    # check status code for repsonse
+    assert response_json["status"] == "success"
+    assert response_json["message"] == "Successfully! Record has been updated"

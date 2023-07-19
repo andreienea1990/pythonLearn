@@ -17,3 +17,7 @@ class EmployeePage(BasePage):
     def delete_employee(self, employee_id):
         url = f"https://dummy.restapiexample.com/api/v1/delete/{employee_id}"
         return self.make_api_request(url, api_method=ApiMethod.DELETE.value)
+
+    def update_employee(self, employee_id):
+        url = f"https://dummy.restapiexample.com/api/v1/update/{employee_id}"
+        return self.make_api_request(url, api_method=ApiMethod.PUT)git a
