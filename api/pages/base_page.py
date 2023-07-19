@@ -10,12 +10,12 @@ class BasePage:
     def __init__(self, api_client):
         self.api_client = api_client
 
-    def make_api_request(self, url):
+    def make_api_request(self, url,api_method="GET"):
         retry_count = 0
         while retry_count < self.max_retries:
-            response = self.api_client.get(url, self.headers)
+            response = self.api_client.request(api_method,url, self.headers)
             if response.status_code == 200:
-                return response.json()
+                return response
             elif response.status_code == 429:
                 retry_count += 1
                 sleep(self.retry_delay)

@@ -10,13 +10,18 @@ def employee_page(api_client):
 def test_get_employee(employee_page):
     employee_id = 1
     response = employee_page.get_employee(employee_id)
-    assert response["status"] == "success"
-    assert isinstance(response["data"], dict)
-    assert response["data"]["id"] == employee_id
-    assert response["data"]["employee_name"] == "Tiger Nixon"
+    status_code = response.status_code
+    response_json = response.json()
+    assert status_code == 200
+    assert response_json["status"] == "success"
+    assert isinstance(response_json["data"], dict)
+    assert response_json["data"]["id"] == employee_id
+    assert response_json["data"]["employee_name"] == "Tiger Nixon"
     # Add more assertions as needed
 
 
 def test_get_all_employees(employee_page):
     response = employee_page.get_all_employees()
-    print(response)
+    # check status code for repsonse
+
+    assert response["status"] == "success"
