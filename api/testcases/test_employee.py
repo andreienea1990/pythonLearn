@@ -6,6 +6,8 @@ from api.pages.employee_page import EmployeePage
 def employee_page(api_client):
     return EmployeePage(api_client)
 
+def test_create_employee(employee_page):
+
 
 def test_get_employee(employee_page):
     employee_id = 1
