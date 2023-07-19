@@ -14,8 +14,8 @@ def test_get_employee(employee_page):
     response = employee_page.get_employee(employee_id)
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == StatusCode.STATUS_OK
-    assert response_json["status"] == ResponseMessages.SUCCESS
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
     assert isinstance(response_json["data"], dict)
     assert response_json["data"]["id"] == employee_id
     assert response_json["data"]["employee_name"] == "Tiger Nixon"
@@ -26,8 +26,8 @@ def test_get_all_employees(employee_page):
     response = employee_page.get_all_employees()
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == StatusCode.STATUS_OK
-    assert response_json["status"] == ResponseMessages.SUCCESS
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
 
 
 def test_delete_employee(employee_page):
@@ -35,6 +35,6 @@ def test_delete_employee(employee_page):
     response = employee_page.delete_employee(employee_id)
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == StatusCode.STATUS_OK
-    assert response_json["status"] == ResponseMessages.SUCCESS
-    assert response_json["message"] == ResponseMessages.RECORD_DELETED
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["status"] == ResponseMessages.SUCCESS.value
+    assert response_json["message"] == ResponseMessages.RECORD_DELETED.value
