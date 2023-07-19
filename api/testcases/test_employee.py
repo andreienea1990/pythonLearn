@@ -22,8 +22,10 @@ def test_get_employee(employee_page):
 
 def test_get_all_employees(employee_page):
     response = employee_page.get_all_employees()
-    # check status code for repsonse
-    assert response["status"] == "success"
+    status_code = response.status_code
+    response_json = response.json()
+    assert status_code == 200
+    assert response_json["status"] == "success"
 
 
 def test_delete_employee(employee_page):
