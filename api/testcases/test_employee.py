@@ -8,7 +8,17 @@ from api.utils.status_messages import ResponseMessages
 def employee_page(api_client):
     return EmployeePage(api_client)
 
-def test_create_employee(employee_page):
+
+def test_create_a_new_employee_record(employee_page):
+    employee_id = 25
+    response = employee_page.create_employee_record()
+    status_code = response.status_code
+    response_json = response.json()
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["data"]["id"] == employee_id
+    assert response_json["data"]["name"] == "test"
+    assert response_json["data"]["salary"] == 123
+    assert  response_json["data"]["age"] == 23
 
 
 def test_get_employee(employee_page):
@@ -21,7 +31,8 @@ def test_get_employee(employee_page):
     assert isinstance(response_json["data"], dict)
     assert response_json["data"]["id"] == employee_id
     assert response_json["data"]["employee_name"] == "Tiger Nixon"
-    # Add more assertions as needed
+    assert response_json["data"]["employee_salary"] == 320800
+    assert response_json["data"]["employee_age"] == 61
 
 
 def test_get_all_employees(employee_page):

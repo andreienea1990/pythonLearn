@@ -18,5 +18,4 @@ class APIClient:
         elif method == ApiMethod.DELETE.value:
             response = requests.delete(url, headers=headers)
         # Add more conditions for other HTTP methods if necessary
-
         return response
