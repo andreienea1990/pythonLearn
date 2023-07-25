@@ -1,7 +1,7 @@
 from time import sleep
 from api.utils.status_codes import StatusCode
 from api.utils.api_headers import ApiHeaders
-
+from api.utils.api_body import ApiBody
 
 class BasePage:
     headers = ApiHeaders.MOZZILA.value
@@ -12,10 +12,10 @@ class BasePage:
     def __init__(self, api_client):
         self.api_client = api_client
 
-    def make_api_request(self, url, api_method):
+    def make_api_request(self, url, api_method, api_body):
         retry_count = 0
         while retry_count < self.max_retries:
-            response = self.api_client.request(url, self.headers, api_method)
+            response = self.api_client.request(url, self.headers,api_method, api_body)
             if response.status_code == StatusCode.STATUS_OK.value:
                 return response
             elif response.status_code == StatusCode.STATUS_TOO_MANY_REQUESTS.value:

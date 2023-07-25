@@ -9,6 +9,17 @@ def employee_page(api_client):
     return EmployeePage(api_client)
 
 
+def test_create_a_new_employee_record(employee_page):
+    response = employee_page.create_employee_record()
+    status_code = response.status_code
+    response_json = response.json()
+    assert status_code == StatusCode.STATUS_OK.value
+    assert response_json["data"]["NAME"] == "test"
+    assert response_json["data"]["SALARY"] == "123"
+    assert response_json["data"]["AGE"] == "23"
+    assert response_json['status'] == ResponseMessages.SUCCESS.value
+
+
 def test_get_employee(employee_page):
     employee_id = 1
     response = employee_page.get_employee(employee_id)
@@ -19,7 +30,8 @@ def test_get_employee(employee_page):
     assert isinstance(response_json["data"], dict)
     assert response_json["data"]["id"] == employee_id
     assert response_json["data"]["employee_name"] == "Tiger Nixon"
-    # Add more assertions as needed
+    assert response_json["data"]["employee_salary"] == 320800
+    assert response_json["data"]["employee_age"] == 61
 
 
 def test_get_all_employees(employee_page):
