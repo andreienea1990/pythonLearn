@@ -1,11 +1,4 @@
-from enum import Enum
+class ApiBody:
+    api_body = {"NAME": "test", "SALARY": 123, "AGE": 23}
 
 
-class ApiBody(Enum):
-    NAME: 'test'
-    SALARY: 123
-    AGE: 23
-
-    @staticmethod
-    def api_body_content(apiclient):
-        return ApiBody(apiclient)

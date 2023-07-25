@@ -3,13 +3,13 @@ from time import sleep
 
 from api.pages.base_page import BasePage
 from api.utils.api_methods import ApiMethod
-from api.utils.api_body import api_body_content
+from api.utils.api_body import ApiBody
 
 
 class EmployeePage(BasePage):
     def create_employee_record(self):
         url = "https://dummy.restapiexample.com/api/v1/create"
-        return self.make_api_request(url, api_method=ApiMethod.POST.value, api_body=api_body_content)
+        return self.make_api_request(url, api_method=ApiMethod.POST.value, api_body=ApiBody.api_body)
 
     def get_employee(self, employee_id):
         url = f"https://dummy.restapiexample.com/api/v1/employee/{employee_id}"

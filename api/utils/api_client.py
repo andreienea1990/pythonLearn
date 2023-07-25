@@ -6,11 +6,11 @@ from api.utils.api_methods import ApiMethod
 class APIClient:
 
     @staticmethod
-    def request(url, headers, method):
+    def request(url, headers, method, json):
         if method == ApiMethod.GET.value:
             response = requests.get(url, headers=headers)
         elif method == ApiMethod.POST.value:
-            response = requests.post(url, headers=headers, data=None)
+            response = requests.post(url, headers=headers, data=json)
         elif method == ApiMethod.PUT.value:
             response = requests.put(url, headers=headers, data=None)
         elif method == ApiMethod.PATCH.value:

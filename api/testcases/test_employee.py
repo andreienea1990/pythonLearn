@@ -10,15 +10,14 @@ def employee_page(api_client):
 
 
 def test_create_a_new_employee_record(employee_page):
-    employee_id = 25
     response = employee_page.create_employee_record()
     status_code = response.status_code
     response_json = response.json()
     assert status_code == StatusCode.STATUS_OK.value
-    assert response_json["data"]["id"] == employee_id
-    assert response_json["data"]["name"] == "test"
-    assert response_json["data"]["salary"] == 123
-    assert  response_json["data"]["age"] == 23
+    assert response_json["data"]["NAME"] == "test"
+    assert response_json["data"]["SALARY"] == "123"
+    assert response_json["data"]["AGE"] == "23"
+    assert response_json['status'] == ResponseMessages.SUCCESS.value
 
 
 def test_get_employee(employee_page):
