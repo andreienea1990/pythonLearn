@@ -12,7 +12,7 @@ class BasePage:
     def __init__(self, api_client):
         self.api_client = api_client
 
-    def make_api_request(self, url, api_method, api_body):
+    def make_api_request(self, url, api_method, api_body=None):
         retry_count = 0
         while retry_count < self.max_retries:
             response = self.api_client.request(url, self.headers,api_method, api_body)
