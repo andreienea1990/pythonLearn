@@ -1,4 +1,6 @@
+"""This file contains the class Api Body"""
+
+
 class ApiBody:
-    api_body = {"NAME": "test", "SALARY": 123, "AGE": 23}
-
-
+    """Class representing Api Body"""
+    api_body = {'NAME': 'test', 'SALARY': 123, 'AGE': 23}

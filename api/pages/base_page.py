@@ -1,9 +1,17 @@
+"""This file contains the class BasePage with the method make_api_requests."""
+
 from time import sleep
+from dataclasses import dataclass
 from api.utils.status_codes import StatusCode
 from api.utils.api_headers import ApiHeaders
-from api.utils.api_body import ApiBody
 
+
+@dataclass
 class BasePage:
+    """Class representing base page."""
+    url: str
+    api_method:str
+    api_body: int = 0
     headers = ApiHeaders.MOZZILA.value
     print(headers)
     max_retries = 5
@@ -12,13 +20,14 @@ class BasePage:
     def __init__(self, api_client):
         self.api_client = api_client
 
-    def make_api_request(self, url, api_method, api_body=None):
+    def make_api_request(self, url: str, api_method: str, api_body: int = 0):
+        """Method returning the response with status OK or with too many requests"""
         retry_count = 0
         while retry_count < self.max_retries:
-            response = self.api_client.request(url, self.headers,api_method, api_body)
+            response = self.api_client.request(url, self.headers, api_method, api_body)
             if response.status_code == StatusCode.STATUS_OK.value:
                 return response
-            elif response.status_code == StatusCode.STATUS_TOO_MANY_REQUESTS.value:
+            if response.status_code == StatusCode.STATUS_TOO_MANY_REQUESTS.value:
                 retry_count += 1
                 sleep(self.retry_delay)
             else:

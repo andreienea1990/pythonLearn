@@ -1,15 +1,18 @@
+"""This file contains test employee"""
 import pytest
 from api.pages.employee_page import EmployeePage
 from api.utils.status_codes import StatusCode
 from api.utils.status_messages import ResponseMessages
 
 
-@pytest.fixture
-def employee_page(api_client):
+@pytest.fixture(name="employee_page")
+def employer_page(api_client):
+    """This method returning class Employee Page"""
     return EmployeePage(api_client)
 
 
 def test_create_a_new_employee_record(employee_page):
+    """This method represent test create a new employee record"""
     response = employee_page.create_employee_record()
     status_code = response.status_code
     response_json = response.json()
@@ -21,6 +24,7 @@ def test_create_a_new_employee_record(employee_page):
 
 
 def test_get_employee(employee_page):
+    """This method represent test get employee"""
     employee_id = 1
     response = employee_page.get_employee(employee_id)
     status_code = response.status_code
@@ -35,6 +39,7 @@ def test_get_employee(employee_page):
 
 
 def test_get_all_employees(employee_page):
+    """This method represent test get all employees"""
     response = employee_page.get_all_employees()
     status_code = response.status_code
     response_json = response.json()
@@ -43,6 +48,7 @@ def test_get_all_employees(employee_page):
 
 
 def test_delete_employee(employee_page):
+    """This method represent test delete employee"""
     employee_id = 2
     response = employee_page.delete_employee(employee_id)
     status_code = response.status_code
