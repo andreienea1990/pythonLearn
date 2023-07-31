@@ -1,12 +1,14 @@
 """This file contains the static method request"""
+from dataclasses import dataclass
 import requests
 from api.utils.api_methods import ApiMethod
 
 
+@dataclass
 class APIClient:
     """Class representing Api Client"""
     @staticmethod
-    def request(url, headers, method, json):
+    def request(url: str, headers: str, method: str, json: str):
         """Method returning the response based on url, headers and body"""
         if method == ApiMethod.GET.value:
             response = requests.get(url, headers=headers, timeout=5)

@@ -3,7 +3,7 @@ get_employee, get_all_employee and delete_employee"""
 
 from api.pages.base_page import BasePage
 from api.utils.api_methods import ApiMethod
-from api.utils.api_body import ApiBody
+from api.utils.api_body import api_body
 
 
 class EmployeePage(BasePage):
@@ -13,7 +13,7 @@ class EmployeePage(BasePage):
          based on url, api method post and api body"""
         url = "https://dummy.restapiexample.com/api/v1/create"
         return self.make_api_request(url, api_method=ApiMethod.POST.value,
-                                     api_body=ApiBody.api_body)
+                                     api_body=api_body)
 
     def get_employee(self, employee_id):
         """Method returning the response with status OK or with too many requests
