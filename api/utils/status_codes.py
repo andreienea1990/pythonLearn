@@ -1,7 +1,9 @@
+"""This file contains the class Status Code"""
 from enum import Enum
 
 
 class StatusCode(Enum):
+    """Class representing the most used status codes"""
     STATUS_OK = 200
     STATUS_CREATED = 201
     STATUS_ACCEPTED = 202
