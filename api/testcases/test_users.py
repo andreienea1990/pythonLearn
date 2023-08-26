@@ -51,7 +51,5 @@ def test_delete_user(users_page):
     user_id = 2
     response = users_page.delete_user(user_id)
     status_code = response.status_code
-    response_json = response.json()
     assert status_code == StatusCode.STATUS_NO_CONTENT.value
-    assert response_json["status"] == ResponseMessages.SUCCESS.value
-    assert response_json["message"] == ResponseMessages.RECORD_DELETED.value
+
