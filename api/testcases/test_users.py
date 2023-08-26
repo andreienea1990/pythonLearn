@@ -1,4 +1,4 @@
-"""This file contains test users"""
+"""This file contains test users for practice backend requests"""
 import pytest
 from api.pages.users_page import UsersPage
 from api.utils.status_codes import StatusCode

@@ -27,11 +27,11 @@ class BasePage:
             response = self.api_client.request(url, self.headers, api_method, api_body)
             if response.status_code == StatusCode.STATUS_OK.value:
                 return response
-            if response.status_code == StatusCode.STATUS_CREATED.value:
+            elif response.status_code == StatusCode.STATUS_CREATED.value:
                 return response
-            if response.status_code == StatusCode.STATUS_NO_CONTENT.value:
+            elif response.status_code == StatusCode.STATUS_NO_CONTENT.value:
                 return response
-            if response.status_code == StatusCode.STATUS_TOO_MANY_REQUESTS.value:
+            elif response.status_code == StatusCode.STATUS_TOO_MANY_REQUESTS.value:
                 retry_count += 1
                 sleep(self.retry_delay)
             else:
