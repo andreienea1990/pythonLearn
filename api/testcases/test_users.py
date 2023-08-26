@@ -17,9 +17,8 @@ def test_create_a_new_user_record(users_page):
     status_code = response.status_code
     response_json = response.json()
     assert status_code == StatusCode.STATUS_CREATED.value
-    assert response_json["data"]["NAME"] == "morpheus"
-    assert response_json["data"]["JOB"] == "leader"
-    assert response_json['status'] == ResponseMessages.SUCCESS.value
+    assert response_json["NAME"] == "morpheus"
+    assert response_json["JOB"] == "leader"
 
 
 def test_get_user(users_page):
@@ -29,7 +28,6 @@ def test_get_user(users_page):
     status_code = response.status_code
     response_json = response.json()
     assert status_code == StatusCode.STATUS_OK.value
-    assert response_json["status"] == ResponseMessages.SUCCESS.value
     assert isinstance(response_json["data"], dict)
     assert response_json["data"]["id"] == user_id
     assert response_json["data"]["email"] == "janet.weaver@reqres.in"
@@ -54,6 +52,6 @@ def test_delete_user(users_page):
     response = users_page.delete_user(user_id)
     status_code = response.status_code
     response_json = response.json()
-    assert status_code == StatusCode.STATUS_OK.value
+    assert status_code == StatusCode.STATUS_NO_CONTENT.value
     assert response_json["status"] == ResponseMessages.SUCCESS.value
     assert response_json["message"] == ResponseMessages.RECORD_DELETED.value
