@@ -2,7 +2,6 @@
 import pytest
 from api.pages.users_page import UsersPage
 from api.utils.status_codes import StatusCode
-from api.utils.status_messages import ResponseMessages
 
 
 @pytest.fixture(name="users_page")
@@ -52,4 +51,3 @@ def test_delete_user(users_page):
     response = users_page.delete_user(user_id)
     status_code = response.status_code
     assert status_code == StatusCode.STATUS_NO_CONTENT.value
-
