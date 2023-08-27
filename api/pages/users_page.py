@@ -8,6 +8,7 @@ from api.utils.api_body import api_body
 
 class UsersPage(BasePage):
     """Class representing users page."""
+
     def create_user_record(self):
         """Method returning the response with status OK or with too many requests
          based on url, api method post and api body"""
@@ -21,10 +22,13 @@ class UsersPage(BasePage):
         url = f"https://reqres.in/api/users/{user_id}"
         return self.make_api_request(url, api_method=ApiMethod.GET.value)
 
-    def get_all_users(self):
+    def get_all_users(self, page_number_param):
         """Method returning the response with status OK or with too many requests
          based on url and api method get"""
-        url = "https://reqres.in/api/users?page=2"
+        page = 1
+        if page_number_param > 0:
+            page = page_number_param
+        url = "https://reqres.in/api/users?page=" + str(page)
         return self.make_api_request(url, api_method=ApiMethod.GET.value)
 
     def delete_user(self, user_id):

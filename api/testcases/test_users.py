@@ -38,7 +38,7 @@ def test_get_user(users_page):
 
 def test_get_all_users(users_page):
     """This method represent test get all users"""
-    response = users_page.get_all_users()
+    response = users_page.get_all_users(2)
     status_code = response.status_code
     response_json = response.json()
     assert status_code == StatusCode.STATUS_OK.value
